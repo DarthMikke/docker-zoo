@@ -1,0 +1,16 @@
+name: samba
+
+services:
+  samba:
+    image: crazymax/samba
+    container_name: samba
+    network_mode: host
+    volumes:
+      - "./data:/data"
+      - "/mnt/storage:/samba/share"
+    environment:
+      - "TZ=Europe/Oslo"
+      - "SAMBA_LOG_LEVEL=0"
+      - "SAMBA_HOSTS_ALLOW=127.0.0.0/8 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 100.0.0.0/8"
+      - "SAMBA_SERVER_STRING=\"Server\""
+    restart: always
